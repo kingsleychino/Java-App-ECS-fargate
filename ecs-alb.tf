@@ -3,7 +3,7 @@ resource "aws_lb" "app_lb" {
   name               = "java-app-alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.ecs_sg.id]
+  security_groups    = [aws_security_group.alb-sg]
   subnets            = [aws_subnet.public-subnet-a.id, aws_subnet.public-subnet-b.id]
 
   enable_deletion_protection = false
@@ -24,7 +24,7 @@ resource "aws_lb_target_group" "app_tg" {
   health_check {
     path                = "/"
     interval            = 30
-    timeout             = 5
+    timeout             = 2
     healthy_threshold   = 2
     unhealthy_threshold = 2
     matcher             = "200"
@@ -46,3 +46,4 @@ resource "aws_lb_listener" "http_listener" {
     target_group_arn = aws_lb_target_group.app_tg.arn
   }
 }
+

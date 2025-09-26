@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "java-app" {
 
   container_definitions = jsonencode([{
     name      = "java-app-container"
-    image     = "503499294473.dkr.ecr.us-east-1.amazonaws.com/simple-java-app:v1.1"
+    image     = "${aws_ecr_repository.app_repo.repository_url}:latest"
     essential = true
     portMappings = [{
       containerPort = 8080
@@ -17,4 +17,9 @@ resource "aws_ecs_task_definition" "java-app" {
       protocol      = "tcp"
     }]
   }])
+}
+
+
+resource "aws_ecr_repository" "app_repo" {
+  name = "simple-java-app"
 }
