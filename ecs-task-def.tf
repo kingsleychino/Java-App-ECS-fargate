@@ -9,11 +9,11 @@ resource "aws_ecs_task_definition" "java-app" {
 
   container_definitions = jsonencode([{
     name      = "java-app-container"
-    image     = "503499294473.dkr.ecr.us-east-1.amazonaws.com/simple-java-app:latest"
+    image     = "503499294473.dkr.ecr.us-east-1.amazonaws.com/simple-java-app:v1.1"
     essential = true
     portMappings = [{
-      containerPort = 80
-      hostPort      = 80
+      containerPort = 8080
+      hostPort      = 8080
       protocol      = "tcp"
     }]
   }])

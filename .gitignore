@@ -9,6 +9,7 @@ terraform.tfstate.backup
 
 # Terraform plan files
 *.tfplan
+tfplan
 
 # Terraform variable definition files (if sensitive data is present)
 *.tfvars
